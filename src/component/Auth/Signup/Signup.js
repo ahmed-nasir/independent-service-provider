@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import {useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth'
+import auth from '../../../firebase.init';
 
 const Signup = () => {
     const [userInfo, setUserInfo] = useState({
@@ -15,6 +17,13 @@ const Signup = () => {
         general: "",
     })
 
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        hookError,
+    ] = useCreateUserWithEmailAndPassword(auth);
+
     const handleEmailChange = (e) => {
 
         const emailRegEx = /\S+@\S+\.\S+/;
@@ -26,10 +35,37 @@ const Signup = () => {
 
         } else {
             setErrors({ ...errors, emailError: "Invalid Email" })
-            setUserInfo({ ...userInfo, email:"" })
+            setUserInfo({ ...userInfo, email: "" })
         }
     }
 
+    const handlePasswordChange = (e) => {
+
+        // const passRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        setUserInfo({ ...userInfo, password: e.target.value })
+
+    }
+
+    const handleConfirmPassword = e => {
+        if (e.target.value === userInfo.password) {
+            setUserInfo({ ...userInfo, confirmPassword: e.target.value })
+            setErrors({ ...errors, passwordError: "" })
+        } else {
+            setErrors({ ...errors, passwordError: "Password does not match!" })
+            setUserInfo({ ...userInfo, confirmPassword: '' })
+        }
+    }
+
+    if(loading){
+        return <p>loading...</p>
+    }
+
+    const handleSignUp=e=>{
+       
+        createUserWithEmailAndPassword(userInfo.email,userInfo.password)
+    }
+    console.log(userInfo.email)
+    console.log(userInfo.password)
     return (
         <div className='mt-5 border border-1 rounded-3 w-50 mx-auto'>
             <div className='text-center'>
@@ -37,7 +73,7 @@ const Signup = () => {
             </div>
             <div className='container p-3'>
                 <div className='d-flex justify-content-center '>
-                    <Form>
+                    <Form onSubmit={handleSignUp}>
                         <Form.Group className="mb-3" controlId="formGroupEmail">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control onChange={handleEmailChange} type="email" placeholder="Enter email" />
@@ -45,12 +81,13 @@ const Signup = () => {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formGroupPassword">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password" />
+                            <Form.Control onChange={handlePasswordChange} type="password" placeholder="Password" />
+                            <p>{userInfo.password}</p>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formGroupConfirmPassword">
                             <Form.Label>Confirm Password</Form.Label>
-                            <Form.Control type="password" placeholder="Confirm Password" />
-
+                            <Form.Control onChange={handleConfirmPassword} type="password" placeholder="Confirm Password" />
+                            {errors?.passwordError && <p className='text-danger'>{errors.passwordError}</p>}
                         </Form.Group>
                         <Form.Group className='mb-3' controlId='toggle'>
                             <Form.Text className="text-muted">
