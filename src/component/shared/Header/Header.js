@@ -1,39 +1,30 @@
 import React from 'react';
-import './Header.css'
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 const Header = () => {
     return (
-        <div className="nav">
-            <input type="checkbox" id="nav-check" />
-            <div className="nav-header">
-                <div className="nav-title">JoGeek</div>
-            </div>
-            <div className="nav-btn">
-                <label for="nav-check">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </label>
-            </div>
+        <Navbar bg="light" expand="lg">
+            <Container fluid>
+                <Navbar.Brand href="#">Website Name</Navbar.Brand>
+                <Navbar.Toggle aria-controls="navbarScroll" />
+                <Navbar.Collapse id="navbarScroll">
+                    <Nav
+                        className="ms-auto my-2 my-lg-0"
+                        style={{ maxHeight: '100px' }}
+                        navbarScroll
+                    >
+                        <Nav.Link href="#action1">Home</Nav.Link>
+                        <Nav.Link href="#action2">Services</Nav.Link>
+                        <Nav.Link href="#action2">About</Nav.Link>
+                        <Nav.Link href="#action2">Contac</Nav.Link>
+                        <Nav.Link href="#action2">Blogs</Nav.Link>
 
-            <div className="nav-links">
-                <a href="/" target="_blank">
-                    Github
-                </a>
-                <a href="/" target="_blank">
-                    Stackoverflow
-                </a>
-                <a href="/" target="_blank">
-                    LinkedIn
-                </a>
-                <a href="/" target="_blank">
-                    Codepen
-                </a>
-                <a href="/" target="_blank">
-                    JsFiddle
-                </a>
-            </div>
-        </div>
+                        
+                    </Nav>
+                    
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 };
 
