@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import {useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import auth from '../../../firebase.init';
 
 const Signup = () => {
@@ -56,16 +56,23 @@ const Signup = () => {
         }
     }
 
-    if(loading){
-        return <p>loading...</p>
-    }
 
-    const handleSignUp=e=>{
-       
-        createUserWithEmailAndPassword(userInfo.email,userInfo.password)
+    const handleSignUp = e => {
+        e.preventDefault();
+        createUserWithEmailAndPassword(userInfo.email, userInfo.password)
     }
-    console.log(userInfo.email)
-    console.log(userInfo.password)
+ 
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
+
+    useEffect(() => {
+        if (user) {
+            navigate(from)
+        }
+    }, [user])
+
     return (
         <div className='mt-5 border border-1 rounded-3 w-50 mx-auto'>
             <div className='text-center'>
@@ -82,7 +89,7 @@ const Signup = () => {
                         <Form.Group className="mb-3" controlId="formGroupPassword">
                             <Form.Label>Password</Form.Label>
                             <Form.Control onChange={handlePasswordChange} type="password" placeholder="Password" />
-                            <p>{userInfo.password}</p>
+
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formGroupConfirmPassword">
                             <Form.Label>Confirm Password</Form.Label>
