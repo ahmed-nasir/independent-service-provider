@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Pesonal Traning For Beginer",
+        "price": "100",
+        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
+        "img": "https://i.ibb.co/dGDkr4v/1.jpg",
+        "duration":"45"
+    },
+    {
+        "id": 2,
+        "name": "WorkOt for Intermidiat",
+        "price": "150",
+        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
+        "img": "https://i.ibb.co/tY8dmnP/2.jpg",
+        "duration":"45"
+    },
+    {
+        "id": 3,
+        "name": "Advance Trainnig ",
+        "price": "200",
+        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
+        "img": "https://i.ibb.co/Yh04YVw/3.jpg",
+        "duration":"45"
+    }
+]

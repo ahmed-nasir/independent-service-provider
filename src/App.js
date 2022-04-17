@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import CheckOut from './component/CheckOut/CheckOut';
 import Home from './component/Home/Home';
 import NotFound from './component/NotFound/NotFound';
 import Services from './component/Services/Services';
@@ -14,7 +15,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}/>
         <Route path='/services' element={<Services></Services>}/>
-        
+        <Route path='/checkout' element ={<CheckOut></CheckOut>}/>
         <Route path='*' element={<NotFound></NotFound>}/>
       </Routes>
       <Footer></Footer>

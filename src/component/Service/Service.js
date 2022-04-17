@@ -1,10 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Service = () => {
+const Service = ({service}) => {
+    const {name,price,img,description}=service;
     return (
-        <div>
-            <h1>Service Detals</h1>
-        </div>
+        <div className='service'>
+        <img className='w-100' src={img} alt="" />
+        <h2>This is service {name}</h2>
+        <p>Price: {price}</p>
+        <p><small>{description}</small></p>
+        <Link to='/checkout'><button  className='btn btn-primary'>Book</button></Link>
+    </div>
     );
 };
 
