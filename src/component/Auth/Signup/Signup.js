@@ -3,6 +3,9 @@ import { Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import auth from '../../../firebase.init';
+import Loading from '../../shared/Loading/Loading';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
     const [userInfo, setUserInfo] = useState({
@@ -22,7 +25,7 @@ const Signup = () => {
         user,
         loading,
         hookError,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
     const handleEmailChange = (e) => {
 
@@ -60,18 +63,23 @@ const Signup = () => {
     const handleSignUp = e => {
         e.preventDefault();
         createUserWithEmailAndPassword(userInfo.email, userInfo.password)
+        toast("Successfull")
     }
- 
+
 
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
 
-    useEffect(() => {
-        if (user) {
-            navigate(from)
-        }
-    }, [user])
+    if (loading) {
+        return <Loading></Loading>
+    }
+    console.log(user)
+    // useEffect(() => {
+    if (user) {
+        navigate(from)
+    }
+    // }, [user])
 
     return (
         <div className='mt-5 border border-1 rounded-3 w-50 mx-auto'>
@@ -103,7 +111,9 @@ const Signup = () => {
                             </Form.Text>
                         </Form.Group>
                         <button className='btn btn-primary w-50'>SignUp</button>
+                        <ToastContainer/>
                     </Form>
+                    
                 </div>
             </div>
         </div>
