@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <Navbar bg="light" expand="lg">
             <Container fluid>
-                <Navbar.Brand href="#" style={{fontSize:'25px'}}>JK Fitness</Navbar.Brand>
+                <Navbar.Brand as={Link} to='/' style={{fontSize:'25px'}}>JK Fitness</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav

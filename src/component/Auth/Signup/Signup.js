@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import auth from '../../../firebase.init';
 import Loading from '../../shared/Loading/Loading';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SocialLogin from '../SocialLogin/SocialLogin';
+import googleIcon from '../../../images/icon/google.png'
+import github from '../../../images/icon/github.png'
 
 const Signup = () => {
     const [userInfo, setUserInfo] = useState({
@@ -26,6 +29,7 @@ const Signup = () => {
         loading,
         hookError,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [signInWithGoogle, , gLoading, error] = useSignInWithGoogle(auth)
 
     const handleEmailChange = (e) => {
 
@@ -71,6 +75,8 @@ const Signup = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
 
+
+
     if (loading) {
         return <Loading></Loading>
     }
@@ -108,13 +114,15 @@ const Signup = () => {
                             <Form.Text className="text-muted">
                                 <span>Already have an Acount? </span>
                                 <Link to='/login'>LogIn</Link>
+                                {
+                                    hookError && <p className='text-danger'>{hookError.message}</p>
+                                }
                             </Form.Text>
                         </Form.Group>
-                        <button className='btn btn-primary w-50'>SignUp</button>
-                        <ToastContainer/>
                     </Form>
-                    
+
                 </div>
+                <SocialLogin/>
             </div>
         </div>
     );

@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
+import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import auth from '../../../firebase.init';
 import Loading from '../../shared/Loading/Loading';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import googleIcon from '../../../images/icon/google.png'
+import github from '../../../images/icon/github.png'
 
 const Signup = () => {
+    const [user] = useAuthState(auth)
+
     const [userInfo, setUserInfo] = useState({
         email: "",
         password: "",
@@ -23,10 +27,12 @@ const Signup = () => {
 
     const [
         signInWithEmailAndPassword,
-        user,
+        ,
         loading,
         hookError,
     ] = useSignInWithEmailAndPassword(auth);
+
+    // const [signInWithGoogle, , gLoading, error] = useSignInWithGoogle(auth)
 
 
 
@@ -65,6 +71,8 @@ const Signup = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
 
+
+
     if (loading) {
         return <Loading></Loading>
     }
@@ -96,13 +104,35 @@ const Signup = () => {
                             <Form.Text className="text-muted">
                                 <span>Create an Acount? </span>
                                 <Link to='/signup'>Signup</Link>
+                                {
+                                    hookError && <p className='text-danger'>{hookError.message}</p>
+                                }
                             </Form.Text>
                         </Form.Group>
-                        <button className='btn btn-primary w-50'>Login</button>
-                        <SocialLogin></SocialLogin>
+                        <button className='btn btn-primary w-50 d-block mx-auto'>Login</button>
+
+                        {/* <div >
+                            <div className='w-100 d-flex justify-content-center align-items-center'>
+                                <div style={{ height: '1px' }} className='bg-secondary w-50'></div>
+                                <p className='mt-2 px-2'>or</p>
+                                <div style={{ height: '1px' }} className='bg-secondary w-50'></div>
+                            </div>
+                            <div>
+                                {
+                                    error && <p className='text-danger'>{error.message}</p>
+                                }
+                                <button onClick={() => signInWithGoogle()} className='btn btn-light d-block mx-auto my-2'><img src={googleIcon} alt="" />
+                                    <span className='px-2'>Google Sign In</span>
+                                </button>
+                                <button className='btn btn-light d-block mx-auto'><img src={github} alt="" />
+                                    <span className='px-2'>Github Sign In</span>
+                                </button>
+                            </div>
+                        </div> */}
                     </Form>
-                    <ToastContainer/>
+                    <ToastContainer />
                 </div>
+                    <SocialLogin/>
             </div>
         </div>
     );
