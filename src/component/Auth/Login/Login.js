@@ -2,13 +2,14 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+
 const Login = () => {
     return (
-        <div className='mt-5 border border-1 w-50 mx-auto'>
+        <div className='mt-5 border border-1 rounded-3 w-50 mx-auto'>
             <div className='text-center'>
                 <h1>Log In</h1>
             </div>
-            <div className='container'>
+            <div className='container p-3'>
                 <div className='d-flex justify-content-center '>
                     <Form  >
                         <Form.Group className="mb-3" controlId="formGroupEmail">
@@ -28,7 +29,7 @@ const Login = () => {
                                 <Link to='/signup'>Create New</Link>
                             </Form.Text>
                         </Form.Group>
-                        <button className='btn btn-primary'>Login</button>
+                        <button className='btn btn-primary w-50'>Login</button>
                     </Form>
                 </div>
             </div>
