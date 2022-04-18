@@ -82,7 +82,7 @@ const Signup = () => {
     }
     // useEffect(() => {
     if (user) {
-        navigate(from)
+        navigate(from,{replace:true})
     }
     // }, [user])
 

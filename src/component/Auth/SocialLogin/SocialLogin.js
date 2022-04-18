@@ -1,31 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import googleIcon from '../../../images/icon/google.png'
 import github from '../../../images/icon/github.png'
 import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../../shared/Loading/Loading';
+import {  toast } from 'react-toastify';
 
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth)
     const navigate = useNavigate()
     let errorElement
-    if (error) {
-        errorElement = (
-            <div>
-                <p className='text-danger'>Error: {error.message}</p>
-            </div>
-        )
-    }
-    if(loading){
+    
+    
+    useEffect(()=>{
+        if (error) {
+            toast(`${error.message}`)
+       }
+
+        if(loading){
         <Loading></Loading>
+        toast("Login succesfull")
     }
+    },[error,loading])
+    
 
     
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
     if (user) {
-        navigate(from)
+        navigate(from,{replace:true})
     }
     return (
         <div className='d-block w-50 mx-auto'>
