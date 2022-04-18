@@ -71,7 +71,9 @@ const Signup = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
 
-
+    if (hookError) {
+        toast(hookError?.message)
+    }
 
     if (loading) {
         return <Loading></Loading>
@@ -104,18 +106,18 @@ const Signup = () => {
                             <Form.Text className="text-muted">
                                 <span>Create an Acount? </span>
                                 <Link to='/signup'>Signup</Link>
-                                {
+                                {/* {
                                     hookError && <p className='text-danger'>{hookError.message}</p>
-                                }
+                                } */}
                             </Form.Text>
                         </Form.Group>
                         <button className='btn btn-primary w-50 d-block mx-auto'>Login</button>
 
-                        
+
                     </Form>
                     <ToastContainer />
                 </div>
-                    <SocialLogin/>
+                <SocialLogin />
             </div>
         </div>
     );

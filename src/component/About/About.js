@@ -4,32 +4,7 @@ import persion from '../../images/persion/persion.png'
 const About = () => {
     return (
         <div>
-            {/* 
-            <div className='container  bg-primary '>
-                <div className='row'>
-                    <div className='col col-lg-6 d-flex justify-content-center align-items-center'>
-                        <div className=''>
-                            <h2>Hi <br /> I'm Nasir Ahmed</h2>
-                            <div>
-                                <h3>In next couple of years I want to be expart in web developer.  </h3>
-                                <p>To fullfill my goal I learn & practice regularly. </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='col col-lg-6 float-right'>
-                        <div>
-
-                            <img className='img-fluid' src={persion} alt='' />
-                        </div>
-                    </div>
-                </div>
-
-                <div className=''>
-
-                </div>
-            </div>
-
- */}
+            
 
             <div class="card mb-3 vh-100" >
                 <div class="row g-0">
