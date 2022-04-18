@@ -111,24 +111,7 @@ const Signup = () => {
                         </Form.Group>
                         <button className='btn btn-primary w-50 d-block mx-auto'>Login</button>
 
-                        {/* <div >
-                            <div className='w-100 d-flex justify-content-center align-items-center'>
-                                <div style={{ height: '1px' }} className='bg-secondary w-50'></div>
-                                <p className='mt-2 px-2'>or</p>
-                                <div style={{ height: '1px' }} className='bg-secondary w-50'></div>
-                            </div>
-                            <div>
-                                {
-                                    error && <p className='text-danger'>{error.message}</p>
-                                }
-                                <button onClick={() => signInWithGoogle()} className='btn btn-light d-block mx-auto my-2'><img src={googleIcon} alt="" />
-                                    <span className='px-2'>Google Sign In</span>
-                                </button>
-                                <button className='btn btn-light d-block mx-auto'><img src={github} alt="" />
-                                    <span className='px-2'>Github Sign In</span>
-                                </button>
-                            </div>
-                        </div> */}
+                        
                     </Form>
                     <ToastContainer />
                 </div>
