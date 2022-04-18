@@ -7,7 +7,7 @@ const BannerOne = () => {
                 <div class="container">
                 
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                            <h1>Discover Your <span style={{color:"#F06C05"}}>Power</span> </h1>
+                            <h1>Discover Your <span className='text-primary'>Power</span> </h1>
                             <p> Through Online Coaching</p>
                         </div>
                     
