@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth'
+import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import auth from '../../../firebase.init';
 import Loading from '../../shared/Loading/Loading';
 import { ToastContainer, toast } from 'react-toastify';
@@ -34,7 +34,9 @@ const Signup = () => {
 
     // const [signInWithGoogle, , gLoading, error] = useSignInWithGoogle(auth)
 
-
+    const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(
+        auth
+    );
 
     const handleEmailChange = (e) => {
 
@@ -84,6 +86,16 @@ const Signup = () => {
     }
     // }, [user])
 
+    const handleResetPassword = async () => {
+        const email = userInfo.email;
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('Sent email');
+        }
+        else {
+            toast('please enter your email address');
+        }
+    }
     return (
         <div className='mt-5 border border-1 rounded-3 w-50 mx-auto'>
             <div className='text-center'>
@@ -109,6 +121,11 @@ const Signup = () => {
                                 {/* {
                                     hookError && <p className='text-danger'>{hookError.message}</p>
                                 } */}
+                            </Form.Text><br/>
+                            <Form.Text className="text-muted">
+                                <span>Forget password? </span>
+                                <Button onClick={handleResetPassword} variant="link">Reset Pasword</Button> <br />
+
                             </Form.Text>
                         </Form.Group>
                         <button className='btn btn-primary w-50 d-block mx-auto'>Login</button>
