@@ -114,6 +114,7 @@ const Signup = () => {
                             <Form.Text className="text-muted">
                                 <span>Already have an Acount? </span>
                                 <Link to='/login'>LogIn</Link>
+                                <button className='btn btn-primary mt-3 w-50 d-block mx-auto'>Signup</button>
                                 {
                                     hookError && <p className='text-danger'>{hookError.message}</p>
                                 }

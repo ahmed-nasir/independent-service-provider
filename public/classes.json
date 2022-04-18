@@ -1,25 +1,25 @@
 [
     {
         "id": 1,
-        "name": "Pesonal Traning For Beginer",
+        "name": "Beginer",
         "price": "100",
-        "description": "Free 20 min consultation, <br> Health screening <br> health & fitness testing session.",
+        "description": "In this session I trained fitness basic knowledg. Explain benifits of excercies 20 min consultation, 15min Health screening health & fitness testing session.",
         "img": "https://i.ibb.co/WDzgjPV/bruce-mars-HHXd-PG-e-TIQ-unsplash-1.jpg",
-        "duration":"45"
+        "duration":"35"
     },
     {
         "id": 2,
-        "name": "WorkOt for Intermidiat",
+        "name": "Intermediate",
         "price": "150",
-        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
+        "description": "Intermediate session are planed with  trained fitness intermediate knowledg. Explain benifits of excercies 20 min consultation, 25min Health screening health & fitness excercise session.",
         "img": "https://i.ibb.co/YfQRB5q/workout.jpg",
         "duration":"45"
     },
     {
         "id": 3,
-        "name": "Advance Trainnig ",
+        "name": "Advance",
         "price": "200",
-        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
+        "description": "Advance session are planed with  trained fitness advance knowledg. Explain benifits of excercies 20 min consultation, 25min Health screening health & fitness excercise session.",
         "img": "https://i.ibb.co/PYRhpzc/tainnig.jpg",
         "duration":"45"
     }
