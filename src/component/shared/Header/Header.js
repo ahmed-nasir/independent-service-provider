@@ -8,7 +8,7 @@ import auth from '../../../firebase.init';
 const Header = () => {
     const [user]=useAuthState(auth)
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar sticky='top' bg="light" expand="lg">
             <Container fluid>
                 <Navbar.Brand as={Link} to='/' style={{fontSize:'25px'}}>JK Fitness</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />

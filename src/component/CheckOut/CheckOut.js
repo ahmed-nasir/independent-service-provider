@@ -2,7 +2,7 @@ import { Button } from 'bootstrap';
 import React, { useState } from 'react';
 import { Card, Form, ToastContainer } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 import {toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css'
 const CheckOut = () => {
     const [user] = useAuthState(auth)
 
+    const {id}=useParams();
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [address, setAddress] = useState('')
@@ -36,7 +37,7 @@ const CheckOut = () => {
         event.preventDefault();
         const shipping = { name, email, address, phoneNumber }
         console.log(shipping)
-        toast("Thank you for your booking")
+        toast(`Thank you for your booking ${id}`)
         
 
     }

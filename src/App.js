@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import './App.css';
 import About from './component/About/About';
 import Login from './component/Auth/Login/Login';
@@ -12,17 +13,19 @@ import NotFound from './component/NotFound/NotFound';
 import Services from './component/Services/Services';
 import Footer from './component/shared/Footer/Footer';
 import Header from './component/shared/Header/Header';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <div>
       
       <Header></Header>
+      <ToastContainer />
       
       <Routes>
         <Route path='/' element={<Home></Home>}/>
         <Route path='/services' element={<Services></Services>}/>
-        <Route path='/checkout' element ={
+        <Route path='/checkout/:id' element ={
           <RequirAuth>
             <CheckOut></CheckOut>
           </RequirAuth>
